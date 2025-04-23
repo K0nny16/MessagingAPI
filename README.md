@@ -65,7 +65,7 @@ cd MessagingAPI
 ./mvnw spring-boot:run
 ```
 
-If no changes are made to the pom.xml the docker container should start with springboot 
+If no changes are made to the pom.xml/application.properties the docker container should start with springboot 
 and no config should be needed.(Maybe consider chaning postgres/spring ports) 
 
 
