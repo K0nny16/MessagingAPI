@@ -1,76 +1,106 @@
 # Secure Messaging App
 
-A fullstack-project for secure communications with end-to-end-encryption. The purpos is to build a modern messaging platform for users to send and recive encrypted messages.
+A fullstack project for secure communication with end-to-end encryption.  
+The purpose is to build a modern messaging platform where users can send and receive encrypted messages.
 
 ---
 
-## Projectstructure
+## Project Structure
 
-- **Backend**: Springboot (Java), PostgreSQL, encryption with RSA (asymetricencryption)  & AES (symetricencryption).
-- **Frontend (Webclient)**: React (ongoing), Interface for login,register and sending messages to users.
-- **Database**: PostgreSQL with seperat schema for auth and userdata.
-- **Security**: Passwords are hashed using *Bcrypt*, private keys is encrypted with password and there is a AES-key for each message not for the session to incresse security. Also uses spring security for JWT and session management.
-  
+- **Backend**: Spring Boot (Java), PostgreSQL. Encryption using RSA (asymmetric) and AES (symmetric).
+- **Frontend (Web Client)**: React – UI for login, registration, and messaging.
+- **Database**: PostgreSQL with separate schemas for auth and user data.
+- **Security**: Passwords are hashed with *BCrypt*, private keys are encrypted using the user's password, and each message has its own AES key (not per session) for stronger E2E security.  
+  Spring Security is used for JWT authentication and session management.
+
 ---
 
 ## Features
-  
-- Register and login with encrypted keymanagment.
-- Automatic keygeneration (RSA 2048)
-- AES-encryption for each message
-- End-to-end chat encryption
-- JWT base authentication
-- CLI chat version (future)
-- HTTPS support (only when AWS deploy)
-- Webb interface for login/register and messaging.
+
+- Register and login with encrypted key management
+- Automatic RSA key generation (2048 bits)
+- AES encryption per message
+- End-to-end encrypted chat
+- JWT-based authentication
+- CLI chat version (planned)
+- HTTPS (enabled in deployment)
+- Web interface for registration, login, and messaging
 
 ---
 
-## Technical readme:s
+## Technical READMEs
 
-- [`/MessagingAPI`](/MessagingAPI/README.md): Springboot backend with DB (currently hosted in a docker container) and encryption
-- [`/Frontend`](/Frontend/): React frontend for authentication and messaging.
+- [`/MessagingAPI`](/MessagingAPI/README.md): Spring Boot backend with database and encryption (containerized with Docker)
+- [`/Frontend`](/Frontend/README.md): React frontend for authentication and messaging (in progress)
 
 ---
 
-## Techstack
+## Tech Stack
 
-- Java 21 / Springboot
+- Java 21 / Spring Boot
 - PostgreSQL
-- Docker & Github Actions
-- React / TypeScript 
-- AWS (Fargate/EC2)
+- Docker & GitHub Actions
+- React / TypeScript
+- AWS (ECS/Fargate or EC2)
+
+---
 
 ## Testing
 
-- API: Postman / Bruno
-- Unittesting with Junit & Mockito
+- API testing: Postman / Bruno
+- Unit testing: JUnit & Mockito
 
 ---
 
-## Projcet Status
+## Getting started
+
+```bash
+git clone https://github.com/K0nny16/MessagingAPI.git
+cd MessagingAPI
+```
 
 ### Backend
-- [x] Setup Springboot + PostgreSQL
-- [x] Entitys: `User`,`Auth`,`Message`
-- [x] RSA-keygeneration
+```bash
+cd MessagingAPI
+./mvnw spring-boot:run
+```
+
+If no changes are made to the pom.xml the docker container should start with springboot 
+and no config should be needed.(Maybe consider chaning postgres/spring ports) 
+
+
+### Frontend
+```bash
+cd Frontend
+npm install 
+npm start 
+```
+
+---
+
+## Project Status
+
+### Backend
+- [x] Spring Boot + PostgreSQL setup
+- [x] Entities: `User`, `Auth`, `Message`
+- [x] RSA key generation
 - [x] Encryption of private key (AES + PBKDF2)
-- [x] Hashing of passwords (Bcrypt)
-- [x] Fully functional register flow
-- [ ] Configuring spring security
-- [ ] Login and decryption of private key
-- [ ] JWT
-- [ ] Endpoints to send and recive messages
-  
+- [x] Password hashing (BCrypt)
+- [x] Functional registration flow
+- [ ] Spring Security configuration
+- [ ] Login & decryption of private key
+- [ ] JWT generation & validation
+- [ ] Endpoints for sending & receiving messages
+
 ### Frontend
 - [ ] React setup
-- [ ] Register and login form
-- [ ] Chat interface and message management
-- [ ] Encryption and decryption client-side
+- [ ] Register/login UI
+- [ ] Chat interface & message list
+- [ ] Encryption/decryption on the client
 
-### Depolyment & CI / CD
-- [ ] Containerizing the backend
-- [ ] HTTPS-setup
-- [ ] Configuring GitHub actions for test and deployment.
+### Deployment & CI/CD
+- [ ] Containerize backend
+- [ ] HTTPS setup for AWS
+- [ ] GitHub Actions (build/test/deploy)
 
 ---
